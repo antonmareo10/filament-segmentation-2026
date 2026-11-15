@@ -1,0 +1,55 @@
+{
+ "_doc": "Rows of the report's ablation (tools/ablation.py). 'cands' = candidate files written by tools/candidates.py extract from the out-of-fold probability maps of the training kernels (paths relative to --runs). E = EfficientNetV2-S U-Net, R = ResNet-34 U-Net, 5 fold models each; gN = fragment grouping radius N px; select: best = cross-fitted re-scorer at the best threshold of the grid, a number = re-scorer at that threshold, rule = area >= 500 px and peak >= 0.9, all = keep every candidate.",
+ "rows": [
+  {"name": "R 1024, 4 flips, g12", "cands": "r34_5f/cands_t0.5_g12.pkl", "select": "best"},
+  {"name": "R 1536, 4 flips, g12", "cands": "r34_1536_5f/cands_t0.5_g12.pkl", "select": "best", "ref": "R 1024, 4 flips, g12"},
+  {"name": "E 1536, 4 flips, g10", "cands": "eff1536_g10.pkl", "select": "best"},
+  {"name": "E+R 1536, 4 flips, g10", "cands": "ens_final_g10.pkl", "select": "best", "ref": "E 1536, 4 flips, g10"},
+  {"name": "E+R 1536 + R 1024, 4 flips, g10", "cands": "ens3_g10.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+
+  {"name": "E+R, 8 views @1536", "cands": "tta_d8.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R, 4 flips @2048", "cands": "tta_s2048.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R, 4 flips @1536 + 4 @2048", "cands": "tta_ms.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "FINAL E+R, 8 views @1536 + 4 @2048", "cands": "tta_all.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "FINAL + scales 1792, 2304", "cands": "tta2_pyr.pkl", "select": "best", "ref": "FINAL E+R, 8 views @1536 + 4 @2048"},
+
+  {"name": "FINAL, keep all candidates", "cands": "tta_all.pkl", "select": "all", "ref": "FINAL E+R, 8 views @1536 + 4 @2048"},
+  {"name": "FINAL, fixed rule", "cands": "tta_all.pkl", "select": "rule", "ref": "FINAL E+R, 8 views @1536 + 4 @2048"},
+  {"name": "FINAL, pixel thr 0.45", "cands": "tta_all_t0.45.pkl", "select": "best", "ref": "FINAL E+R, 8 views @1536 + 4 @2048"},
+  {"name": "FINAL, pixel thr 0.55", "cands": "tta_all_t0.55.pkl", "select": "best", "ref": "FINAL E+R, 8 views @1536 + 4 @2048"},
+
+  {"name": "E+R 4 flips, g0", "cands": "ens_final_t0.5_g0_d0.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R 4 flips, g6", "cands": "ens_final_t0.5_g6_d0.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R 4 flips, g8", "cands": "ens_final_g8.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R 4 flips, g12", "cands": "ens_final_g12.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+  {"name": "E+R 4 flips, g10, dilate 1 px", "cands": "ens_final_t0.5_g10_d1.pkl", "select": "best", "ref": "E+R 1536, 4 flips, g10"},
+
+  {"name": "s03: R 1024, g0, rule", "cands": "r34_5f/cands_t0.5.pkl", "select": "rule"},
+  {"name": "s04: R 1024, g0, re-scorer 0.35", "cands": "r34_5f/cands_t0.5.pkl", "select": "0.35", "ref": "s03: R 1024, g0, rule"},
+  {"name": "s06: E+R 4 flips, g10, re-scorer 0.35", "cands": "ens_final_g10.pkl", "select": "0.35"},
+  {"name": "s07: E+R 4 flips, g10, rule", "cands": "ens_final_g10.pkl", "select": "rule", "ref": "s06: E+R 4 flips, g10, re-scorer 0.35"},
+  {"name": "s08: E+R 4 flips, g10, re-scorer 0.45", "cands": "ens_final_g10.pkl", "select": "0.45", "ref": "s06: E+R 4 flips, g10, re-scorer 0.35"},
+  {"name": "s09: E+R 4@1536 + 4@2048, re-scorer 0.375", "cands": "tta_ms.pkl", "select": "0.375"},
+  {"name": "s10: FINAL, re-scorer 0.325", "cands": "tta_all.pkl", "select": "0.325", "ref": "s06: E+R 4 flips, g10, re-scorer 0.35"},
+
+  {"name": "f0 s01: R 1024, g0, rule", "cands": "v1/cands_t0.5.pkl", "select": "rule"},
+  {"name": "f0 s02: R 1536, g0, rule", "cands": "r34_1536_f0/cands_t0.5.pkl", "select": "rule", "ref": "f0 s01: R 1024, g0, rule"},
+  {"name": "f0 R 2048 (1024 crops), g0, rule", "cands": "r34_2048c_f0/cands_t0.5.pkl", "select": "rule", "ref": "f0 s02: R 1536, g0, rule"},
+  {"name": "f0 E 1536, g10, rule", "cands": "p0_eff1536.pkl", "select": "rule"},
+  {"name": "f0 E 1536 fine-tuned @2048, g10, rule", "cands": "p0_effft2048.pkl", "select": "rule", "ref": "f0 E 1536, g10, rule"},
+  {"name": "f0 E 1536 + 4 flips @2048 (no retraining), g10, rule", "cands": "p0_eff_ms_noft.pkl", "select": "rule", "ref": "f0 E 1536, g10, rule"},
+  {"name": "f0 R 1536, g10, rule", "cands": "p0_r34_1536.pkl", "select": "rule"},
+  {"name": "f0 R 1536 fine-tuned @2048, g10, rule", "cands": "p0_r34_ft2048.pkl", "select": "rule", "ref": "f0 R 1536, g10, rule"}
+ ],
+ "submissions": [
+  {"id": "s01", "row": "f0 s01: R 1024, g0, rule", "lb": 0.32},
+  {"id": "s02", "row": "f0 s02: R 1536, g0, rule", "lb": 0.34},
+  {"id": "s03", "row": "s03: R 1024, g0, rule", "lb": 0.33},
+  {"id": "s04", "row": "s04: R 1024, g0, re-scorer 0.35", "lb": 0.34},
+  {"id": "s06", "row": "s06: E+R 4 flips, g10, re-scorer 0.35", "lb": 0.37},
+  {"id": "s07", "row": "s07: E+R 4 flips, g10, rule", "lb": 0.35},
+  {"id": "s08", "row": "s08: E+R 4 flips, g10, re-scorer 0.45", "lb": 0.36},
+  {"id": "s09", "row": "s09: E+R 4@1536 + 4@2048, re-scorer 0.375", "lb": 0.37},
+  {"id": "s10", "row": "s10: FINAL, re-scorer 0.325", "lb": 0.38}
+ ]
+}

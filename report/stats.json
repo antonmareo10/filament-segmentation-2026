@@ -1,0 +1,115 @@
+{
+ "images": 707,
+ "annotator_images": 1154,
+ "PQ": 0.43180471842148305,
+ "SQ": 0.6756903908699804,
+ "RQ": 0.6390570655674352,
+ "PQ_ci95": [
+  0.4226384974264912,
+  0.4410776183914757
+ ],
+ "SQ_ci95": [
+  0.6729165259198678,
+  0.6784696474765293
+ ],
+ "RQ_ci95": [
+  0.6264984625670923,
+  0.6521354688143619
+ ],
+ "TP_FP_FN": [
+  4961,
+  2366,
+  3238
+ ],
+ "pred_per_image": 6.325318246110325,
+ "PQ_multi_annotator_images": 0.4334111436324467,
+ "n_multi_annotator_images": 296,
+ "per_observatory_PQ": {
+  "Bh": 0.4342,
+  "Ch": 0.425,
+  "Lh": 0.4272,
+  "Mh": 0.4284,
+  "Th": 0.4369,
+  "Uh": 0.4415
+ },
+ "per_site": {
+  "Bh": {
+   "name": "Big Bear",
+   "images": 118,
+   "PQ": 0.4342,
+   "PQ_ci95": [
+    0.4145,
+    0.4521
+   ]
+  },
+  "Ch": {
+   "name": "Cerro Tololo",
+   "images": 125,
+   "PQ": 0.425,
+   "PQ_ci95": [
+    0.4027,
+    0.4451
+   ]
+  },
+  "Lh": {
+   "name": "Learmonth",
+   "images": 127,
+   "PQ": 0.4272,
+   "PQ_ci95": [
+    0.4066,
+    0.4483
+   ]
+  },
+  "Mh": {
+   "name": "Mauna Loa",
+   "images": 125,
+   "PQ": 0.4284,
+   "PQ_ci95": [
+    0.4044,
+    0.4519
+   ]
+  },
+  "Th": {
+   "name": "El Teide",
+   "images": 110,
+   "PQ": 0.4369,
+   "PQ_ci95": [
+    0.4085,
+    0.4647
+   ]
+  },
+  "Uh": {
+   "name": "Udaipur",
+   "images": 102,
+   "PQ": 0.4415,
+   "PQ_ci95": [
+    0.4203,
+    0.4646
+   ]
+  }
+ },
+ "tp_iou_mean": 0.6756903908699806,
+ "tp_dice_mean": 0.8033707036230371,
+ "tp_iou_median": 0.68,
+ "tp_dice_median": 0.8095238095238095,
+ "annotated_filaments": 8199,
+ "annotated_best_iou_gt_0.5": 4961,
+ "annotated_best_iou_0.3_to_0.5": 1008,
+ "annotated_not_overlapped": 1750,
+ "gt_overlapped_by_k_preds": {
+  "0": 1750,
+  "1": 6138,
+  "2": 268,
+  "3": 39,
+  "4": 4
+ },
+ "pred_overlapping_k_gts": {
+  "0": 798,
+  "1": 6272,
+  "2": 233,
+  "3": 22,
+  "4": 1
+ },
+ "base_cfg": "PostCfg(thr=0.5, seed_thr=0.0, min_area=0, close_r=0, fill_holes=True, dilate_r=0, group_r=10)",
+ "selection": "cross-fitted re-scorer >= 0.325"
+}
